@@ -1,0 +1,482 @@
+:root {
+  --bg-color1: #131217;
+  --bg-color2: #2a2b2d;
+  --aqi-1: #4caf50;
+  --aqi-2: #ffeb3b;
+  --aqi-3: #ff9800;
+  --aqi-4: #f44336;
+  --aqi-5: #9c27b0;
+}
+
+*,
+*::before,
+*::after,
+input {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  background-color: var(--bg-color1);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  padding: 0 15px;
+}
+
+small {
+  font-size: 10px;
+  color: #5d5d5d;
+  font-style: italic;
+
+  & a {
+    text-decoration: underline;
+    color: inherit;
+  }
+}
+
+hr {
+  margin-bottom: 10px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10bx;
+  padding: 15px 10px;
+  border-radius: 0 0 15px 15px;
+  & h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  & #city_input {
+    background-color: var(--bg-color1);
+    border: 1px solid transparent;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+    color: #fff;
+    transition: 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: #fff;
+    }
+  }
+
+  & #searchBtn {
+    border: 1px solid transparent;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+
+    &:hover {
+      background-color: transparent;
+      border-color: #fff;
+      color: #fff;
+    }
+  }
+
+  & #locationBtn {
+    border: 1px solid transparent;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    background-color: #ff5b4b;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      background-color: transparent;
+      border-color: #ff5b4b;
+      color: #ff5b4b;
+    }
+  }
+}
+
+.list {
+  display: none;
+}
+
+.card {
+  background-color: var(--bg-color2);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+
+  & p {
+    font-size: 14px;
+    color: #999;
+  }
+
+  & h2 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+}
+.card-footer {
+  margin-top: 15px;
+}
+.weather-data {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+
+  & .weather-left {
+    grid-column: span 1;
+
+    & h2 {
+      margin-bottom: 10px;
+    }
+
+    & .current-weather {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & h2 {
+        margin: 7px 0;
+        font-style: italic;
+        font-weight: bold;
+      }
+
+      & p {
+        color: #fff;
+      }
+    }
+
+    & .card-footer p {
+      font-size: 14px;
+      margin-bottom: 12px;
+      margin-top: 5px;
+      display: flex;
+      gap: 5px;
+      font-style: italic;
+    }
+
+    & .forecast-item {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      place-items: center;
+      margin-bottom: 15px;
+      font-style: italic;
+
+      & .icon-wrapper {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  & .weather-right {
+    grid-column: span 3;
+
+    & h2 {
+      margin-bottom: 10px;
+    }
+
+    & .highlights {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 15px;
+
+      & .card:nth-of-type(1),
+      & .card:nth-of-type(2) {
+        grid-column: span 2;
+      }
+
+      & .card-head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        & .air-index {
+          color: #000;
+          padding: 5px 10px;
+          border-radius: 15px;
+        }
+
+        & .aqi-1 {
+          background-color: var(--aqi-1);
+        }
+
+        & .aqi-2 {
+          background-color: var(--aqi-2);
+        }
+
+        & .aqi-3 {
+          background-color: var(--aqi-3);
+        }
+
+        & .aqi-4 {
+          background-color: var(--aqi-4);
+        }
+
+        & .aqi-5 {
+          background-color: var(--aqi-5);
+        }
+      }
+    }
+
+    & .air-indices {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 10px;
+      gap: 20px;
+      place-items: center;
+
+      & p {
+        margin-top: px;
+        text-align: center;
+      }
+    }
+
+    & .sunrise-sunset {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 40px;
+
+      & .item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        & h2 {
+          margin-top: 15px;
+        }
+      }
+    }
+
+    & .card-item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  & .hourly-forecast {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: 10px;
+
+    & .card {
+      text-align: center;
+    }
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .weather-data {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .weather-data .weather-right {
+    grid-column: span 2;
+  }
+
+  .weather-data .weather-right .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .weather-data .hourly-forecast {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .weather-data .weather-right .highlights {
+    &.card {
+      grid-column: span 2;
+    }
+
+    & .air-indices {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .weather-left > small {
+    display: none;
+  }
+
+  .footer {
+    display: block;
+  }
+}
+
+@media (max-width: 850px) {
+  .header {
+    position: static;
+    flex-direction: column;
+    & h2 {
+      margin-bottom: 5px;
+    }
+  }
+
+  .weather-data {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-data .weather-left {
+    grid-column: span 2;
+  }
+
+  .weather-data .weather-right .highlights .air-indices {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .weather-right .highlights:nth-last-child() {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    position: static;
+    top: 0;
+
+    & h2 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .weather-input {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .weather-input input,
+  .weather-input button {
+    width: 100%;
+  }
+}
+@media (max-width: 460px) {
+  .weather-data .hourly-forecast {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff5b4b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background-color: #ff5a4bb5;
+  }
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 800px) {
+  .scroll-to-top {
+    display: none;
+  }
+}
+
+/* toast */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  left: -10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 16px;
+  border-radius: 8px;
+  color: white;
+  font-family: sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+  position: relative;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.toast.error {
+  background-color: #ff5954;
+}
+.toast i {
+  font-size: 16px;
+}
+
+.toast .close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Animation */
+
+.scroll-to-top.show {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
