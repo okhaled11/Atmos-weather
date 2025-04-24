@@ -379,8 +379,10 @@ hr {
   .weather-data .hourly-forecast {
     grid-template-columns: repeat(3, 1fr);
   }
-    .highlights .card .sunrise-sunset .item h3 {
-    width: 20px;
+ .highlights .card .sunrise-sunset {
+    display: flex; 
+    justify-content: center;
+    gap: 50px;
   }
 }
 
