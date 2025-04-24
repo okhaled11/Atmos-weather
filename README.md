@@ -54,5 +54,5 @@
 
 ## 🌐 Links
 
-- **Live Demo:** [https://Atmos_weather](https://okhaled11.github.io/Atmos-weather-/)
+- **Live Demo:** [https://Atmos_weather](https://okhaled11.github.io/Atmos-weather/)
 
